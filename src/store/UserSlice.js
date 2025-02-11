@@ -12,8 +12,10 @@ export const UserSlice =  createSlice({
     name: 'UserStore',
     initialState,
     reducers:{
-            Login:(state)=>{
-                state.value = "login success"
+            Login:(state,actions)=>{
+                state.value = 'login law';
+                state.User = actions.payload;
+                state.Loading = !state.Loading;
             },
             Logout:(state)=>{
                 state.value = "logout success"

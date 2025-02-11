@@ -3,10 +3,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Login,Logout } from '../store/UserSlice'
 
 const Testredux2 = () => {
+    const user = {
+        username: 'ggwp',
+        password: '12314'
+    }
 
     const dispatch = useDispatch();
     const handleLogin = ()=>{
-        dispatch(Login())
+        dispatch(Login(user))
     }
     const handleLogout = ()=>{
         dispatch(Logout())

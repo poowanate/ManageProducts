@@ -1,12 +1,20 @@
 import "./App.css";
 
+import Testredux from "./components/testredux";
+import Testredux2 from "./components/testredux2";
+
 function App() {
+
+  
   return (
-    <main className="flex justify-center gap-4 flex-col min-h-screen">
-      <h1 className="text-3xl text-center font-bold underline">React & Tailwind CSS Starter Pack</h1>
-      <p className="text-center text-xl">This is a starter pack for React & Tailwind CSS projects.</p>
-      <img src="https://bit.ly/3wsmzTy" alt="meme" className="mx-auto" />
-    </main>
+    <>
+  <div className= "justify-center text-center text-2xl">
+    <Testredux/>
+    <hr></hr>
+    <Testredux2/>
+    
+    </div>
+    </>
   );
 }
 

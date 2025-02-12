@@ -1,1 +1,17 @@
 /* write your css here */
+body {
+    background-color: white;
+    color: black;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  /* สไตล์สำหรับ Dark Mode */
+  [data-theme='dark'] body {
+    background-color: #121212 !important;
+    color: #ffffff;
+  }
+  
+  [data-theme='dark'] .button {
+    background-color: #333;
+    color: #fff;
+  }

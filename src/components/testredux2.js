@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Login,Logout } from '../store/UserSlice'
+import { Login,Logout } from '../store/Slice/UserSlice'
 
 const Testredux2 = () => {
     const user = {

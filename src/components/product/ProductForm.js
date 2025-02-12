@@ -1,13 +1,27 @@
 import React, { useState,useEffect } from 'react';
 import { useDispatch,useSelector } from 'react-redux';
-import { addProduct } from '../../store/Slice/ProductSlice';
+import { addProduct,updateProduct,clearData } from '../../store/Slice/ProductSlice';
 
+
+const ButtonsWrapper = () => {
+  const [buttonState, setButtonState] = useState(false)
+  return (
+      <div>
+          <button onClick={() => setButtonState(!buttonState)} isOpen={buttonState} />
+          <button onClick={() => setButtonState(!buttonState)} isOpen={buttonState} />
+      </div>
+  )
+}
 const ProductForm = () => {
 
   const data = useSelector((state)=>({...state.Products }))
-  console.log(data.products)
-  console.log(data.index)
+
    const item = data.products.find((item) => item.id === parseInt(data.index));
+   
+   const [dataza, setdataza] = useState({
+    products: Array(8),
+    index: 1739377988582,
+  });
 
   const dispatch = useDispatch();
   const [productImg, setproductImg] = useState('');
@@ -16,7 +30,7 @@ const ProductForm = () => {
   const [productDetail, setproductDetail] = useState('');
   const [productPrice, setproductPrice] = useState('');
   const [fileName,setfileName] = useState('');
-
+  const [Button,setButton] = useState(false);
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     setfileName(event.target.value);
@@ -34,16 +48,18 @@ const ProductForm = () => {
     }
   };
   useEffect(() => {
+   
+    console.log(data)
     if (item) {
       setvalue(item)
-
+      setButton(true)
     }
   }, [item]);
   const setvalue = (data)=>{
     setproductImg(data.image);
-    setproductName(data.image);
-    setproductDetail(data.image);
-    setproductPrice(data.image);
+    setproductName(data.name);
+    setproductDetail(data.detail);
+    setproductPrice(data.price);
     setfileName(data.image);
   }
 
@@ -53,18 +69,44 @@ const ProductForm = () => {
     setproductDetail('');
     setproductPrice('');
     setfileName('');
+    setButton(false)
+    dispatch(clearData());
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newProduct = {
-      id: Date.now(),
-      image: productImg,
-      name: productName,
-      detail: productDetail,
-      price: productPrice,
-    };
-    dispatch(addProduct(newProduct));
-    clearvalue()
+
+    const buttonClicked = e.nativeEvent.submitter.name;
+// เช็คสถานะปุ่มไหนถูกกด
+    if (buttonClicked === "save") {
+      const newProduct = {
+        id: Date.now(),
+        image: productImg,
+        name: productName,
+        detail: productDetail,
+        price: productPrice,
+      };
+      clearvalue()
+      dispatch(addProduct(newProduct));
+     
+      
+    } else if (buttonClicked === "edit") {
+      const editProduct = {
+        id: data.index,
+        image: productImg,
+        name: productName,
+        detail: productDetail,
+        price: productPrice,
+      };
+      dispatch(updateProduct(editProduct));
+      clearvalue()
+      setButton(false)
+    }
+    else{
+      clearvalue()
+      setButton(false)
+    }
+   
+    
   };
 
   return (
@@ -117,7 +159,11 @@ const ProductForm = () => {
 
 id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="คำอธิบายเกี่ยวกับสินค้า"></textarea>
      </div>
-    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+     {Button ?  <button name="edit" type="submit" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Update</button>
+ :  <button name="save" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+ }
+   <button name="reset" type="submit" class="ml-4 text-white bg-red-400 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-grey-600 dark:hover:bg-grey-700 dark:focus:ring-grey-800">Reset</button> 
+
 </form>
 
 

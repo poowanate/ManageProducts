@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIndex,deleteProduct, updateProduct } from '../../store/Slice/ProductSlice';
+import { selectIndex,deleteProduct, updateProduct,clearData } from '../../store/Slice/ProductSlice';
 import { FixedSizeList } from "react-window";
 
 const TableWithFixedSizeList = ({ products }) => {
@@ -8,13 +8,13 @@ const TableWithFixedSizeList = ({ products }) => {
   const dispatch = useDispatch();
 
 
-  const handleRemove = (id) => {
-    console.log(id)
-    dispatch(deleteProduct(id));
+  const handleRemove = (product) => {
+    // console.log(id)
+    dispatch(deleteProduct(product.id));
   };
 
   const handleEdit = (product) => {
-  
+    
     dispatch(selectIndex(product.id))
     // const updatedProduct = { ...product, name: prompt('Edit product name:', product.name) };
     // if (updatedProduct.name) {
@@ -34,13 +34,13 @@ const TableWithFixedSizeList = ({ products }) => {
          
       <div style={style} class=" grid grid-cols-5 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
         
-          <div   class=" px-6 py-4 font-medium text-gray-900  dark:text-white">
+          <div   class="truncate px-6 py-4 font-medium text-gray-900  dark:text-white">
           {product.name}
           </div>
-          <div  class=" px-6 py-4 dark:text-white">
+          <div  class="truncate px-6 py-4 dark:text-white">
           {product.name}
           </div>
-          <div  class=" px-6 py-4 dark:text-white" >
+          <div  class="truncate px-6 py-4 dark:text-white" >
           {product.price}
           </div>
           <div  class="truncate text-left px-6 py-4 dark:text-white">
@@ -53,7 +53,7 @@ const TableWithFixedSizeList = ({ products }) => {
 </svg>
 </a>
 
-              <a href="#" class=" btn   font-medium text-blue-600 dark:text-blue-500 hover:underline"><svg class="hover:bg-red-200 hover:text-red-600 border rounded-lg border-red-400 w-8 h-8 text-red-500 dark:text-red-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <a onClick={() => handleRemove(product)} class=" btn   font-medium text-blue-600 dark:text-blue-500 hover:underline"><svg class="hover:bg-red-200 hover:text-red-600 border rounded-lg border-red-400 w-8 h-8 text-red-500 dark:text-red-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
 </svg>
 </a>
@@ -78,23 +78,23 @@ const TableWithFixedSizeList = ({ products }) => {
 
   return (
    
-<div  class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+<div  class="w-full text-sm text-left rtl:text-right text-gray-500  dark:bg-gray-800  ">
 
-          <div  className='grid grid-cols-5 bg-gray-50'>
+          <div  className='grid grid-cols-5 dark:bg-gray-500 dark:  text-white  bg-gray-500 '>
               
-              <div  scope="col" className="flex-1 p-3 border border-gray-200 text-left">
+              <div  scope="col" className="flex-1 p-3   text-left">
                    Image
               </div>
-              <div  scope="col" className="flex-1 p-3 border border-gray-200 text-left">
+              <div  scope="col" className="flex-1 p-3  text-left">
                    Name
               </div>
-              <div  scope="col" className="flex-1 p-3 border border-gray-200 text-left">
+              <div  scope="col" className="flex-1 p-3   text-left">
                   Price
               </div>
-              <div  scope="col" className="flex-1  p-3 border border-gray-200 text-left">
+              <div  scope="col" className="flex-1  p-3   text-left">
                   detail
               </div>
-              <div  scope="col" className="flex-1 p-3 border border-gray-200 text-left">
+              <div  scope="col" className="flex-1 p-3   text-left">
                   Action
               </div>
           </div>

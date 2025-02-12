@@ -6,6 +6,7 @@ import VirtualizedList from "./components/VirtualizedList";
 import Pagination from "./components/Pagination";
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleTheme } from './store/Slice/DarkModeSlice';
+import Product from "./components/product/Product";
 import Toggle from "./components/Toggle";
 function App() {
   const theme = useSelector((state) => state.DarkMode.theme);
@@ -19,8 +20,8 @@ function App() {
   <div className= " dark:bg-gray-800 dark:text-white mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-md md:max-w-2xl">
   <div className="p-8">
     <div className=" md:flex "></div>
-    <Pagination/>
-   
+    {/* <Pagination/> */}
+    <Product/>
     </div>
     </div>
     </div>

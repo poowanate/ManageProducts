@@ -15,3 +15,9 @@ body {
     background-color: #333;
     color: #fff;
   }
+
+  [data-theme='light'] .button {
+    background-color: #333;
+    color: #fff;
+    
+  }

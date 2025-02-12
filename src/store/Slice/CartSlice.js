@@ -5,31 +5,46 @@ const initialState = {
 };
 
 const cartSlice = createSlice({
-  name: 'cart',
+  name: 'Cart',
   initialState,
   reducers: {
-    addItem: (state, action) => {
+    addToCart: (state, action) => {
       // เพิ่มสินค้าลงในตะกร้า
-      const existingItem = state.items.find(item => item.id === action.payload.id);
+      const item = action.payload;
+      const existingItem  = state.items.find(i => i.id === item.id    );
       if (existingItem) {
         existingItem.quantity += 1;
       } else {
-        state.items.push({ ...action.payload, quantity: 1 });
+        state.items.push({ ...item, quantity: 1 });
       }
     },
-    removeItem: (state, action) => {
+    removeFromCart: (state, action) => {
       // ลบสินค้าจากตะกร้า
-      state.items = state.items.filter(item => item.id !== action.payload);
+      const itemId = action.payload;
+      state.items = state.items.filter(item => item.id !== itemId);
     },
-    updateQuantity: (state, action) => {
+    updatePlusQuantity: (state, action) => {
       // อัปเดตจำนวนสินค้าที่มีในตะกร้า
-      const item = state.items.find(item => item.id === action.payload.id);
-      if (item) {
-        item.quantity = action.payload.quantity;
+      const { id, quantity } = action.payload;
+      const existingItem  = state.items.find(item => item.id === id);
+      if (existingItem ) {
+        existingItem.quantity = quantity+1;
+      }
+    },
+    updateDeQuantity: (state, action) => {
+      // อัปเดตจำนวนสินค้าที่มีในตะกร้า
+      const { id, quantity } = action.payload;
+      const existingItem  = state.items.find(item => item.id === id);
+      // console.log(quantity)
+      if (existingItem && quantity>1 ) {
+        existingItem.quantity = quantity-1;
+      }
+      else{
+        state.items = state.items.filter(item => item.id !== id);
       }
     },
   },
 });
 
-export const { addItem, removeItem, updateQuantity } = cartSlice.actions;
+export const { addToCart, removeFromCart, updatePlusQuantity, updateDeQuantity } = cartSlice.actions;
 export default cartSlice.reducer;

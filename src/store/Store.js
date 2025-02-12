@@ -9,7 +9,7 @@ export const Store = configureStore({
         UserStore : UserSlice,
         DarkMode : DarkModeSlice,
         Products : ProductSlice,
-        CartSlice : ProductSlice
+        Cart : CartSlice
        
     }
 })

@@ -3,25 +3,16 @@ import { useDispatch,useSelector } from 'react-redux';
 import { addProduct,updateProduct,clearData } from '../../store/Slice/ProductSlice';
 
 
-const ButtonsWrapper = () => {
-  const [buttonState, setButtonState] = useState(false)
-  return (
-      <div>
-          <button onClick={() => setButtonState(!buttonState)} isOpen={buttonState} />
-          <button onClick={() => setButtonState(!buttonState)} isOpen={buttonState} />
-      </div>
-  )
-}
 const ProductForm = () => {
 
   const data = useSelector((state)=>({...state.Products }))
 
    const item = data.products.find((item) => item.id === parseInt(data.index));
    
-   const [dataza, setdataza] = useState({
-    products: Array(8),
-    index: 1739377988582,
-  });
+  //  const [dataza, setdataza] = useState({
+  //   products: Array(8),
+  //   index: 1739377988582,
+  // });
 
   const dispatch = useDispatch();
   const [productImg, setproductImg] = useState('');
@@ -145,7 +136,7 @@ const ProductForm = () => {
             <input 
             value={productPrice}
             onChange={(e) => setproductPrice(e.target.value)}
-            type="text" id="company" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ใส่ราคา" required />
+            type="number" id="company" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ใส่ราคา" required />
         </div>  
       
        

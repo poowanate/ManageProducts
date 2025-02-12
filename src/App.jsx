@@ -6,9 +6,11 @@ import VirtualizedList from "./components/VirtualizedList";
 import Pagination from "./components/Pagination";
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleTheme } from './store/Slice/DarkModeSlice';
-import Product from "./components/product/Product";
+import Product from "./components/products/Product";
 import Toggle from "./components/Toggle";
 import Chat from "./components/Chat";
+import FormValidation from "./components/FormValidation";
+import InfiniteScroll from "./components/InfiniteScroll";
 function App() {
   const theme = useSelector((state) => state.DarkMode.theme);
 
@@ -22,12 +24,13 @@ function App() {
   <div className="p-8">
     <div className=" md:flex "></div>
     {/* <Pagination/> */}
-    <Product/>
+    {/* <Product/> */}
 {/* <Chat/> */}
-
+    {/* <FormValidation/> */}
+    <InfiniteScroll/>
     </div>
     </div>
-    </div>
+    </div>  
     </>
   );
 }

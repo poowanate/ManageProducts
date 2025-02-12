@@ -1,6 +1,7 @@
 import React, { useEffect,useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFromCart, updatePlusQuantity , updateDeQuantity } from '../../store/Slice/CartSlice';
+import { exportToCSV } from '../../utils/exportCSV';
 
 const CartForm = () => {
     const dispatch = useDispatch();
@@ -26,7 +27,12 @@ const CartForm = () => {
     const getTotal = () => {
       return cartData.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
     };
-  
+    
+    const handleExportCSV = () => {
+        const totalAmount = getTotal();
+        exportToCSV(cartItems, totalAmount);  // ส่งข้อมูลสินค้ากับยอดรวมไปที่ฟังก์ชัน export
+      };
+
     useEffect(() => {
         console.log(cartItems)
         // console.log(data)
@@ -118,13 +124,16 @@ const CartForm = () => {
     
         <tfoot>
             <tr class="font-semibold text-gray-900 dark:text-white">
-            <td scope="row" class="px-6 py-3 text-base"></td>
+            <td class="px-6 py-3"><button  className='p-4 bg-green-500 rounded-lg text-white hover:bg-green-600 hover:text-gray-200' onClick={handleExportCSV}>ดาวน์โหลด CSV</button></td>
             <td scope="row" class="px-6 py-3 text-base"></td>
             <td scope="row" class="px-6 py-3 text-base"></td>
                 <td scope="row" class="px-6 py-3 text-base">Total</td>
                 
                 <td class="px-6 py-3">{getTotal()} &nbsp;&nbsp; บาท</td>
+               
             </tr>
+
+            
         </tfoot>
             <div>
            

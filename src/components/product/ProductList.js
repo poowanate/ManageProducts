@@ -33,9 +33,10 @@ const TableWithFixedSizeList = ({ products }) => {
      
          
       <div style={style} class=" grid grid-cols-5 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-        
-          <div   class="truncate px-6 py-4 font-medium text-gray-900  dark:text-white">
-          {product.name}
+      
+          <div   class="truncate px-6 py-1 font-medium text-gray-900  dark:text-white">
+          <img class=" object-cover " src= {product.image} alt="image description"/>
+         
           </div>
           <div  class="truncate px-6 py-4 dark:text-white">
           {product.name}

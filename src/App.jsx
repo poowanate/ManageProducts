@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { toggleTheme } from './store/Slice/DarkModeSlice';
 import Product from "./components/product/Product";
 import Toggle from "./components/Toggle";
+import Chat from "./components/Chat";
 function App() {
   const theme = useSelector((state) => state.DarkMode.theme);
 
@@ -22,6 +23,8 @@ function App() {
     <div className=" md:flex "></div>
     {/* <Pagination/> */}
     <Product/>
+{/* <Chat/> */}
+
     </div>
     </div>
     </div>

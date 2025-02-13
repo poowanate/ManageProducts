@@ -3,7 +3,7 @@ import { FixedSizeList } from "react-window";
 
 const data = Array.from({ length: 100000 }, (_, index) => `Item ${index}`);
 const renderRow = ({ index, style }) => (
-    <div className=' bg-purple-200' style={style}>{data[index]}</div>
+    <div className=' bg-gray-200 dark:text-white dark:bg-gray-500' style={style}>{data[index]}</div>
 
 
 
@@ -15,7 +15,7 @@ const VirtualizedList = () => {
     
     <div style={{}  }>
 
-<h1>Virtualized List (100,000 Items)</h1>
+<h1 className=' text-2xl font-bold '>Virtualized List (100,000 Items)</h1>
 <br></br>
         <FixedSizeList
         height={500} // ความสูงของ list

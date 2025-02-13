@@ -1,17 +1,13 @@
 import "./App.css";
+import Layout from "./components/Layouts/layout"
 
 import Testredux from "./components/testredux";
 import Testredux2 from "./components/testredux2";
-import VirtualizedList from "./components/VirtualizedList";
-import Pagination from "./components/Pagination";
+
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleTheme } from './store/Slice/DarkModeSlice';
-import Product from "./components/products/Product";
-import Toggle from "./components/Toggle";
-import Chat from "./components/Chat";
-import FormValidation from "./components/FormValidation";
-import InfiniteScroll from "./components/InfiniteScroll";
-import Cart from "./components/cart/Cart";
+
+
+
 function App() {
   const theme = useSelector((state) => state.DarkMode.theme);
 
@@ -19,20 +15,11 @@ function App() {
   
   return (
     <>
- <div className="dark:bg-gray-900 text-black dark:text-white min-h-screen p-8">
- <Toggle/>  
-  <div className= " dark:bg-gray-800 dark:text-white mx-auto max-w-7xl overflow-hidden rounded-xl bg-white md:max-w-7xl">
-  <div className="p-8">
-    <div className=" md:flex "></div>
-    <Cart/>
-    {/* <Pagination/> */}
-    {/* <Product/> */}
-{/* <Chat/> */}
-    {/* <FormValidation/> */}
-    {/* <InfiniteScroll/> */}
-    </div>
-    </div>
-    </div>  
+
+    <Layout/>
+
+    
+   
     </>
   );
 }
